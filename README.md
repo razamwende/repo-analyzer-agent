@@ -1,6 +1,6 @@
 # repo-analyzer-agent
 
-![CI](https://github.com/your-username/repo-analyzer-agent/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/razamwende/repo-analyzer-agent/actions/workflows/ci.yml/badge.svg)
 
 Un agent IA qui clone n'importe quel repository GitHub/GitLab, analyse sa stack technique et sa qualité de code, puis génère un rapport Markdown structuré — en une seule commande.
 
@@ -22,7 +22,7 @@ Construit avec [LangGraph](https://github.com/langchain-ai/langgraph) et Claude 
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/repo-analyzer-agent
+git clone https://github.com/razamwende/repo-analyzer-agent
 cd repo-analyzer-agent
 
 python -m venv .venv
