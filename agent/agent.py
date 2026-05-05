@@ -23,6 +23,18 @@ Sois précis, factuel et actionnable.
 
 
 def create_agent():
+    """Instancie et retourne un agent ReAct LangGraph prêt à l'emploi.
+
+    Initialise un `ChatAnthropic` avec le modèle `claude-sonnet-4-6` et le connecte
+    aux quatre outils d'analyse via `create_react_agent`. La clé API est lue depuis
+    la variable d'environnement `ANTHROPIC_API_KEY`.
+
+    Returns:
+        Un agent LangGraph (`CompiledGraph`) invocable via `.invoke()`.
+
+    Raises:
+        KeyError: Si la variable d'environnement `ANTHROPIC_API_KEY` n'est pas définie.
+    """
     llm = ChatAnthropic(
         model="claude-sonnet-4-6",
         api_key=os.environ["ANTHROPIC_API_KEY"],
@@ -31,6 +43,17 @@ def create_agent():
 
 
 def analyze_repo(url: str) -> str:
+    """Analyse un repository distant et retourne un rapport Markdown.
+
+    Crée un agent, l'invoque avec l'URL fournie et retourne le contenu
+    du dernier message produit par le LLM (le rapport final).
+
+    Args:
+        url: URL HTTPS du repository à analyser (ex: https://github.com/user/repo).
+
+    Returns:
+        Rapport d'analyse complet au format Markdown.
+    """
     agent = create_agent()
     result = agent.invoke({
         "messages": [("human", f"Analyse ce repository et génère un rapport complet : {url}")]
